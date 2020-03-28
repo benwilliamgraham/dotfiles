@@ -1,0 +1,171 @@
+# benwilliamgraham@gmail.com
+# i3 config
+
+###############################################################################
+# Window control
+###############################################################################
+
+# set keys
+set $mod Mod4
+set $left Left
+set $down Down
+set $up Up
+set $right Right
+
+# set focus shortcuts
+bindsym $mod+$left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+a focus parent
+bindsym $mod+space focus mode_toggle
+focus_on_window_activation smart
+
+# move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# change orientation
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
+
+# change view
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# change mode
+bindsym $mod+Shift+space floating toggle
+
+# move floating window
+floating_modifier $mod
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# reload/restart/exit i3
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym $left resize shrink width 10 px or 10 ppt
+        bindsym $down resize grow height 10 px or 10 ppt
+        bindsym $up resize shrink height 10 px or 10 ppt
+        bindsym $right resize grow width 10 px or 10 ppt
+
+        # exit resize
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+###############################################################################
+# Launchers
+###############################################################################
+bindsym $mod+Return exec konsole
+bindsym $mod+d exec rofi -show run
+
+
+
+###############################################################################
+# Workspaces
+###############################################################################
+# define workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+
+###############################################################################
+# Graphics
+###############################################################################
+# fonts
+font pango:Ubuntu 11
+
+# wallpaper
+exec_always feh --bg-scale ~/Pictures/wallpaper.jpg
+
+# border
+for_window [class=".*"] border pixel 4
+
+# gaps
+gaps inner 8
+gaps outer 2
+smart_gaps on
+
+# pop-ups
+popup_during_fullscreen smart
+
+# colorclass - border - background - text - indicator - child_border
+client.focused              #bf616a #bf616a #d8dee8 #bf616a #bf616a
+client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.background           #2f343f
+
+###############################################################################
+# Bar
+###############################################################################
+
+# Start i3bar to display a workspace bar
+bar {
+        status_command i3status
+        position top
+        colors {
+                background #2f343f
+                statusline #2f343f
+                separator #4b5262
+
+                # colour of border, background, and text
+                focused_workspace       #2f343f #bf616a #d8dee8
+                active_workspace        #2f343f #2f343f #d8dee8
+                inactive_workspace      #2f343f #2f343f #d8dee8
+                urgent_workspacei       #2f343f #ebcb8b #2f343f
+        }
+}
