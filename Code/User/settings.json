@@ -1,51 +1,49 @@
 {
-    "astyle.cmd_options": [
-        "--style=google",
-        "--indent=spaces=2"
-    ],
-    "editor.fontFamily": "Fira Code",
-    "editor.tabSize": 2,
-    "editor.cursorStyle": "underline",
-    "editor.fontLigatures": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.wordWrap": "on",
-    "files.exclude": {
-        "**/__pycache__": true
-    },
-    "editor.accessibilitySupport": "off",
-    "editor.formatOnSave": true,
-    "editor.mouseWheelZoom": true,
-    "editor.renderControlCharacters": true,
-    "editor.smoothScrolling": false,
-    "files.insertFinalNewline": true,
-    "files.trimTrailingWhitespace": true,
-    "files.trimFinalNewlines": true,
-    "workbench.activityBar.visible": false,
-    "breadcrumbs.enabled": false,
-    "workbench.settings.editor": "json",
-    "window.autoDetectColorScheme": true,
-    "window.restoreWindows": "none",
-    "window.menuBarVisibility": "toggle",
-    "window.titleBarStyle": "native",
-    "debug.console.fontFamily": "Fira Code",
-    "debug.internalConsoleOptions": "openOnSessionStart",
-    "extensions.showRecommendationsOnlyOnDemand": true,
-    "terminal.external.linuxExec": "konsole",
-    "terminal.integrated.cursorStyle": "underline",
-    "terminal.integrated.fontFamily": "Fira Code",
-    "remote.downloadExtensionsLocally": true,
-    "remote.restoreForwardedPorts": true,
-    "C_Cpp.updateChannel": "Insiders",
-    "git.ignoreLegacyWarning": true,
-    "explorer.confirmDelete": false,
-    "[c]": {
-        "editor.defaultFormatter": "chiehyu.vscode-astyle"
-    },
-    "[python]": {
-        "editor.tabSize": 4
-    },
-    "workbench.iconTheme": "material-icon-theme",
-    "explorer.confirmDragAndDrop": false,
-    "git.autofetch": true,
-    "workbench.colorTheme": "Ayu Mirage"
+  "astyle.cmd_options": ["--style=google", "--indent=spaces=2"],
+  "editor.fontFamily": "Fira Code",
+  "editor.tabSize": 2,
+  "editor.cursorStyle": "underline",
+  "editor.fontLigatures": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.wordWrap": "on",
+  "files.exclude": {
+    "**/__pycache__": true
+  },
+  "editor.accessibilitySupport": "off",
+  "editor.minimap.renderCharacters": true,
+  "editor.formatOnSave": true,
+  "editor.mouseWheelZoom": true,
+  "editor.renderControlCharacters": true,
+  "editor.smoothScrolling": false,
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "workbench.activityBar.visible": false,
+  "breadcrumbs.enabled": false,
+  "workbench.settings.editor": "json",
+  "window.autoDetectColorScheme": true,
+  "window.restoreWindows": "none",
+  "window.menuBarVisibility": "toggle",
+  "window.titleBarStyle": "native",
+  "debug.console.fontFamily": "Fira Code",
+  "debug.internalConsoleOptions": "openOnSessionStart",
+  "extensions.showRecommendationsOnlyOnDemand": true,
+  "terminal.external.linuxExec": "konsole",
+  "terminal.integrated.cursorStyle": "underline",
+  "terminal.integrated.fontFamily": "Fira Code",
+  "remote.downloadExtensionsLocally": true,
+  "remote.restoreForwardedPorts": true,
+  "C_Cpp.updateChannel": "Insiders",
+  "git.ignoreLegacyWarning": true,
+  "explorer.confirmDelete": false,
+  "[c]": {
+    "editor.defaultFormatter": "chiehyu.vscode-astyle"
+  },
+  "[python]": {
+    "editor.tabSize": 4
+  },
+  "explorer.confirmDragAndDrop": false,
+  "git.autofetch": true,
+  "workbench.colorTheme": "Ayu Mirage",
+  "workbench.iconTheme": "material-icon-theme"
 }

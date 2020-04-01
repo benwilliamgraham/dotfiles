@@ -23,9 +23,10 @@ focus_on_window_activation smart
 
 # move focused window
 bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+mouse_warping none
 
 # change orientation
 bindsym $mod+h split h
@@ -45,6 +46,12 @@ floating_modifier $mod
 
 # kill focused window
 bindsym $mod+Shift+q kill
+
+# move workspaces between monitors
+bindsym $mod+Ctrl+$left move workspace to output left
+bindsym $mod+Ctrl+$down move workspace to output down
+bindsym $mod+Ctrl+$up move workspace to output up
+bindsym $mod+Ctrl+$right move workspace to output right
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -74,20 +81,12 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 ###############################################################################
-# Launchers
-###############################################################################
-bindsym $mod+Return exec konsole
-bindsym $mod+d exec rofi -show run
-
-
-
-###############################################################################
 # Workspaces
 ###############################################################################
 # define workspaces
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
@@ -120,18 +119,32 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+# set applications to workspaces
+assign [class="Lxappearance"] $ws1
+assign [class="Lxrandr"] $ws1
+assign [class="Google-chrome"] $ws2
+assign [class="Code"] $ws3
+
+
+###############################################################################
+# Launchers
+###############################################################################
+bindsym $mod+Return exec kitty
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+l exec rofi -show window
 
 ###############################################################################
 # Graphics
 ###############################################################################
 # fonts
-font pango:Ubuntu 11
+font pango:Font Awesome 11
 
 # wallpaper
-exec_always feh --bg-scale ~/Pictures/wallpaper.jpg
+exec_always --no-startup-id feh --conversion-timeout 1 --bg-scale ~/Pictures/Just\ Sudo\ It.svg
 
 # border
-for_window [class=".*"] border pixel 4
+for_window [class=".*"] border pixel 3
+hide_edge_borders smart
 
 # gaps
 gaps inner 8
@@ -142,30 +155,29 @@ smart_gaps on
 popup_during_fullscreen smart
 
 # colorclass - border - background - text - indicator - child_border
-client.focused              #bf616a #bf616a #d8dee8 #bf616a #bf616a
-client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.background           #2f343f
+client.focused              #FFCC66 #FFCC66 #CBCCC6 #FFCC66 #FFCC66
+client.focused_inactive     #1F2430 #1F2430 #CBCCC6 #1F2430 #1F2430
+client.unfocused            #1F2430 #1F2430 #CBCCC6 #1F2430 #1F2430
+client.urgent               #1F2430 #1F2430 #CBCCC6 #1F2430 #1F2430
+client.placeholder          #1F2430 #1F2430 #CBCCC6 #1F2430 #1F2430
+client.background           #1F2430
 
 ###############################################################################
 # Bar
 ###############################################################################
-
-# Start i3bar to display a workspace bar
 bar {
-        status_command i3status
+        tray_output primary
+        status_command i3status -c ~/.config/i3status/config
         position top
         colors {
-                background #2f343f
-                statusline #2f343f
-                separator #4b5262
+                background #1F2430
+                statusline #1F2430
+                separator #101521
 
                 # colour of border, background, and text
-                focused_workspace       #2f343f #bf616a #d8dee8
-                active_workspace        #2f343f #2f343f #d8dee8
-                inactive_workspace      #2f343f #2f343f #d8dee8
-                urgent_workspacei       #2f343f #ebcb8b #2f343f
+                focused_workspace       #1F2430 #FFCC66 #1F2430
+                active_workspace        #1F2430 #1F2430 #CBCCC6
+                inactive_workspace      #1F2430 #1F2430 #CBCCC6
+                urgent_workspacei       #1F2430 #F28779 #1F2430
         }
 }
