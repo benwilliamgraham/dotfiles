@@ -6,12 +6,16 @@
   "editor.fontLigatures": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.wordWrap": "on",
+  "files.associations": {
+    "*.h": "c"
+  },
   "files.exclude": {
     "**/__pycache__": true
   },
   "editor.accessibilitySupport": "off",
   "editor.minimap.renderCharacters": true,
   "editor.formatOnSave": true,
+  "editor.renderIndentGuides": false,
   "editor.mouseWheelZoom": true,
   "editor.renderControlCharacters": true,
   "editor.smoothScrolling": false,
@@ -44,6 +48,6 @@
   },
   "explorer.confirmDragAndDrop": false,
   "git.autofetch": true,
-  "workbench.colorTheme": "Ayu Mirage",
-  "workbench.iconTheme": "material-icon-theme"
+  "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
+  "workbench.colorTheme": "Solarized++"
 }

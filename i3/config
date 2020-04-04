@@ -132,15 +132,19 @@ assign [class="Code"] $ws3
 bindsym $mod+Return exec kitty
 bindsym $mod+d exec rofi -show drun
 bindsym $mod+l exec rofi -show window
+bindsym --release Print exec --no-startup-id import ~/Pictures/screenshot`date +%Y-%m-%d_%H:%M:%S`.png
 
 ###############################################################################
 # Graphics
 ###############################################################################
+# compositor
+exec --no-startup-id picom
+
 # fonts
 font pango:Font Awesome 11
 
 # wallpaper
-exec_always --no-startup-id feh --conversion-timeout 1 --bg-scale ~/Pictures/Just\ Sudo\ It.svg
+exec_always --no-startup-id feh --conversion-timeout 1 --bg-scale ~/Pictures/Just\ Sudo\ It\ Dark.svg
 
 # border
 for_window [class=".*"] border pixel 3
@@ -155,12 +159,12 @@ smart_gaps on
 popup_during_fullscreen smart
 
 # colorclass - border - background - text - indicator - child_border
-client.focused              #FFCC66 #FFCC66 #CBCCC6 #FFCC66 #FFCC66
-client.focused_inactive     #1F2430 #1F2430 #CBCCC6 #1F2430 #1F2430
-client.unfocused            #1F2430 #1F2430 #CBCCC6 #1F2430 #1F2430
-client.urgent               #1F2430 #1F2430 #CBCCC6 #1F2430 #1F2430
-client.placeholder          #1F2430 #1F2430 #CBCCC6 #1F2430 #1F2430
-client.background           #1F2430
+client.focused              #2aa198 #2aa198 #eee8d5 #2aa198 #2aa198
+client.focused_inactive     #002b36 #002b36 #eee8d5 #002b36 #002b36
+client.unfocused            #002b36 #002b36 #eee8d5 #002b36 #002b36
+client.urgent               #002b36 #002b36 #eee8d5 #002b36 #002b36
+client.placeholder          #002b36 #002b36 #eee8d5 #002b36 #002b36
+client.background           #002b36
 
 ###############################################################################
 # Bar
@@ -170,14 +174,14 @@ bar {
         status_command i3status -c ~/.config/i3status/config
         position top
         colors {
-                background #1F2430
-                statusline #1F2430
-                separator #101521
+                background #002b36
+                statusline #002b36
+                separator #02222b
 
                 # colour of border, background, and text
-                focused_workspace       #1F2430 #FFCC66 #1F2430
-                active_workspace        #1F2430 #1F2430 #CBCCC6
-                inactive_workspace      #1F2430 #1F2430 #CBCCC6
-                urgent_workspacei       #1F2430 #F28779 #1F2430
+                focused_workspace       #002b36 #2aa198 #002b36
+                active_workspace        #002b36 #002b36 #eee8d5
+                inactive_workspace      #002b36 #002b36 #eee8d5
+                urgent_workspacei       #002b36 #cb4b16 #002b36
         }
 }

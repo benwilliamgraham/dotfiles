@@ -8,7 +8,7 @@ general {
         color_bad = '#ba5e57'
 }
 
-order += "load"
+order += "cpu_usage"
 order += "memory"
 order += "disk /"
 order += "wireless wlp2s0"
@@ -16,26 +16,26 @@ order += "volume master"
 order += "battery 0"
 order += "tztime local"
 
-load {
-        format = "<span background='#F28779'>  %5min Load </span>"
+cpu_usage {
+        format = "<span background='#dc322f'>  %usage CPU </span>"
 }
 
 memory {
-        format = "<span background='#BAE67E'>  %used RAM </span>"
+        format = "<span background='#859900'>  %used RAM </span>"
 }
 
 disk "/" {
-        format = "<span background='#FFD580'>  %free Free </span>"
+        format = "<span background='#b58900'>  %free Free </span>"
 }
 
 wireless wlp2s0 {
-        format_up = "<span background='#73D0FF'>  %essid </span>"
-        format_down = "<span background='#73D0FF'>  Disconnected </span>"
+        format_up = "<span background='#268bd2'>  %essid </span>"
+        format_down = "<span background='#268bd2'>  Disconnected </span>"
 }
 
 volume master {
-        format = "<span background='#D4BFFF'>  %volume </span>"
-        format_muted = "<span background='#D4BFFF'>  Muted </span>"
+        format = "<span background='#d33682'>  %volume </span>"
+        format_muted = "<span background='#d33682'>  Muted </span>"
         device = "default"
         mixer = "Master"
         mixer_idx = 0
@@ -43,8 +43,8 @@ volume master {
 
 battery 0 {
 	last_full_capacity = true
-        format = "<span background='#95E6CB'>  %status %percentage </span>"
-        format_down = "<span background='#95E6CB'>  No Battery </span>"
+        format = "<span background='#2aa198'>  %status %percentage </span>"
+        format_down = "<span background='#2aa198'>  No Battery </span>"
         status_chr = "Charging"
         status_bat = "Battery"
         status_unk = "Unknown"
@@ -54,6 +54,6 @@ battery 0 {
 }
 
 tztime local {
-        format = "<span background='#CBCCC6'>  %time </span>"
+        format = "<span background='#eee8d5'>  %time </span>"
         format_time = "%a %-d %b %H:%M"
 }

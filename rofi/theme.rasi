@@ -1,24 +1,26 @@
 configuration {
-  drun-display-format: "{icon} {name}";
+  drun-display-format: "{name}";
   show-icons: true;
-  font: "Fira Code 11";
+  font: "Fira Code 10";
+  fullscreen: false;
 }
 
 * {
-  background-color: #101521;
-  border-color: #101521;
-  text-color: #CBCCC6;
+  background-color: #02222b;
+  text-color: #eee8d5;
   spacing: 20;
-  columns: 3;
+  columns: 5;
 }
 
 window {
-  width: 50%;
-  height: 50%;
+  width: 720px;
+  height: 512px;
+  border-radius: 3px;
 }
 
 inputbar {
   children: [prompt,entry];
+  margin: 8px;
 }
 
 prompt {
@@ -26,23 +28,34 @@ prompt {
 }
 
 entry {
-  background-color: #1F2430;
+  background-color: #002b36;
   margin: 16px;
-  padding: 16px;
+  padding: 12px;
   border-radius: 3px;
+  placeholder: "Search";
 }
 
 listview {
-  margin: 16px;
+  margin: 8px;
   cycle: true;
   scrollbar: false;
 }
 
 element {
   padding: 10px;
+  width: 64px;
   border-radius: 3px;
+  orientation: vertical;
+}
+
+element-icon {
+  size: 64px;
+}
+
+element-text {
+  horizontal-align: 0.5;
 }
 
 element selected {
-  background-color: #1F2430;
+  background-color: #002b36;
 }
