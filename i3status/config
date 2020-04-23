@@ -3,9 +3,9 @@ general {
         colors = false
         markup = pango
         interval = 5
-        color_good = '#2f343f'
-        color_degraded = '#ebcb8b'
-        color_bad = '#ba5e57'
+        color_good = '#31363D'
+        color_degraded = '#31363D'
+        color_bad = '#FF044A'
 }
 
 order += "cpu_usage"
@@ -17,25 +17,25 @@ order += "battery 0"
 order += "tztime local"
 
 cpu_usage {
-        format = "<span background='#dc322f'>  %usage CPU </span>"
+        format = "<span background='#fb9767'>  %usage CPU </span>"
 }
 
 memory {
-        format = "<span background='#859900'>  %used RAM </span>"
+        format = "<span background='#a9dc76'>  %used RAM </span>"
 }
 
 disk "/" {
-        format = "<span background='#b58900'>  %free Free </span>"
+        format = "<span background='#ffd766'>  %free Free </span>"
 }
 
 wireless wlp2s0 {
-        format_up = "<span background='#268bd2'>  %essid </span>"
-        format_down = "<span background='#268bd2'>  Disconnected </span>"
+        format_up = "<span background='#ab9df2'>  %essid </span>"
+        format_down = "<span background='#ab9df2'>  Disconnected </span>"
 }
 
 volume master {
-        format = "<span background='#d33682'>  %volume </span>"
-        format_muted = "<span background='#d33682'>  Muted </span>"
+        format = "<span background='#ff6087'>  %volume </span>"
+        format_muted = "<span background='#ff6087'>  Muted </span>"
         device = "default"
         mixer = "Master"
         mixer_idx = 0
@@ -43,8 +43,8 @@ volume master {
 
 battery 0 {
 	last_full_capacity = true
-        format = "<span background='#2aa198'>  %status %percentage </span>"
-        format_down = "<span background='#2aa198'>  No Battery </span>"
+        format = "<span background='#78dce8'>  %status %percentage </span>"
+        format_down = "<span background='#78dce8'>  No Battery </span>"
         status_chr = "Charging"
         status_bat = "Battery"
         status_unk = "Unknown"
@@ -54,6 +54,6 @@ battery 0 {
 }
 
 tztime local {
-        format = "<span background='#eee8d5'>  %time </span>"
+        format = "<span background='#ffffff'>  %time </span>"
         format_time = "%a %-d %b %H:%M"
 }

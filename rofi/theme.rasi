@@ -6,8 +6,8 @@ configuration {
 }
 
 * {
-  background-color: #02222b;
-  text-color: #eee8d5;
+  background-color: #ffffff;
+  text-color: #3c4043;
   spacing: 20;
   columns: 5;
 }
@@ -28,7 +28,7 @@ prompt {
 }
 
 entry {
-  background-color: #002b36;
+  background-color: #E0E0E0;
   margin: 16px;
   padding: 12px;
   border-radius: 3px;
@@ -57,5 +57,5 @@ element-text {
 }
 
 element selected {
-  background-color: #002b36;
+  background-color: #E0E0E0;
 }

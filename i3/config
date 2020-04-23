@@ -14,9 +14,9 @@ set $right Right
 
 # set focus shortcuts
 bindsym $mod+$left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
 bindsym $mod+a focus parent
 bindsym $mod+space focus mode_toggle
 focus_on_window_activation smart
@@ -26,7 +26,6 @@ bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
-mouse_warping none
 
 # change orientation
 bindsym $mod+h split h
@@ -63,8 +62,21 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # reload/restart/exit i3
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
 
+  bindsym l exec i3-msg exit
+
+  bindsym r exec systemctl reboot
+
+  bindsym s exec systemctl shutdown
+
+  bindsym Escape mode "default"
+
+  bindsym Return mode "default"
+
+}
+
+bindsym $mod+Shift+e mode "exit: [l]ogout, [r]eboot, [s]hutdown"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -119,12 +131,6 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# set applications to workspaces
-assign [class="Lxappearance"] $ws1
-assign [class="Lxrandr"] $ws1
-assign [class="Google-chrome"] $ws2
-assign [class="Code"] $ws3
-
 
 ###############################################################################
 # Launchers
@@ -137,17 +143,15 @@ bindsym --release Print exec --no-startup-id import ~/Pictures/screenshot`date +
 ###############################################################################
 # Graphics
 ###############################################################################
-# compositor
-exec --no-startup-id picom
 
 # fonts
 font pango:Font Awesome 11
 
 # wallpaper
-exec_always --no-startup-id feh --conversion-timeout 1 --bg-scale ~/Pictures/Just\ Sudo\ It\ Dark.svg
+exec_always --no-startup-id feh --conversion-timeout 1 --bg-scale ~/Pictures/mountain.jpg
 
 # border
-for_window [class=".*"] border pixel 3
+for_window [class=".*"] border pixel 0
 hide_edge_borders smart
 
 # gaps
@@ -159,29 +163,31 @@ smart_gaps on
 popup_during_fullscreen smart
 
 # colorclass - border - background - text - indicator - child_border
-client.focused              #2aa198 #2aa198 #eee8d5 #2aa198 #2aa198
-client.focused_inactive     #002b36 #002b36 #eee8d5 #002b36 #002b36
-client.unfocused            #002b36 #002b36 #eee8d5 #002b36 #002b36
-client.urgent               #002b36 #002b36 #eee8d5 #002b36 #002b36
-client.placeholder          #002b36 #002b36 #eee8d5 #002b36 #002b36
-client.background           #002b36
+client.focused              #ffffff #ffffff #31363D #ffffff #ffffff
+client.focused_inactive     #E0E0E0 #E0E0E0 #31363D #E0E0E0 #E0E0E0
+client.unfocused            #E0E0E0 #E0E0E0 #31363D #E0E0E0 #E0E0E0
+client.urgent               #E0E0E0 #E0E0E0 #31363D #E0E0E0 #E0E0E0
+client.placeholder          #E0E0E0 #E0E0E0 #31363D #E0E0E0 #E0E0E0
+client.background           #E0E0E0
 
 ###############################################################################
 # Bar
 ###############################################################################
 bar {
+        i3bar_command i3bar -t
+        mode hide
         tray_output primary
         status_command i3status -c ~/.config/i3status/config
-        position top
+        position bottom
         colors {
-                background #002b36
-                statusline #002b36
-                separator #02222b
+                background #ffffff
+                statusline #31363D
+                separator #62686f
 
                 # colour of border, background, and text
-                focused_workspace       #002b36 #2aa198 #002b36
-                active_workspace        #002b36 #002b36 #eee8d5
-                inactive_workspace      #002b36 #002b36 #eee8d5
-                urgent_workspacei       #002b36 #cb4b16 #002b36
+                focused_workspace       #ffffff #ffffff #31363D
+                active_workspace        #ffffff #ffffff #62686f
+                inactive_workspace      #ffffff #ffffff #62686f
+                urgent_workspacei       #ffffff #ffffff #ff6087
         }
 }

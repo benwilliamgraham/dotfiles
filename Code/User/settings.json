@@ -1,16 +1,18 @@
 {
-  "astyle.cmd_options": ["--style=google", "--indent=spaces=2"],
   "editor.fontFamily": "Fira Code",
   "editor.tabSize": 2,
   "editor.cursorStyle": "underline",
   "editor.fontLigatures": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabCompletion": "on",
+  "editor.snippetSuggestions": "top",
   "editor.wordWrap": "on",
   "files.associations": {
-    "*.h": "c"
+    "*.h": "c",
+    ".doxyfile": "properties"
   },
   "files.exclude": {
-    "**/__pycache__": true
+    "**/__pycache__": true,
+    "**/.mypy_cache": true
   },
   "editor.accessibilitySupport": "off",
   "editor.minimap.renderCharacters": true,
@@ -40,14 +42,16 @@
   "C_Cpp.updateChannel": "Insiders",
   "git.ignoreLegacyWarning": true,
   "explorer.confirmDelete": false,
-  "[c]": {
-    "editor.defaultFormatter": "chiehyu.vscode-astyle"
-  },
+  "python.linting.mypyArgs": [
+    "--strict"
+  ],
+  "python.linting.mypyEnabled": true,
   "[python]": {
     "editor.tabSize": 4
   },
   "explorer.confirmDragAndDrop": false,
   "git.autofetch": true,
-  "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
-  "workbench.colorTheme": "Solarized++"
+  "workbench.iconTheme": "Monokai Pro Icons",
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "Monokai Pro"
 }
