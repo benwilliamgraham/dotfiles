@@ -7,10 +7,10 @@
 
 # set keys
 set $mod Mod4
-set $left Left
-set $down Down
-set $up Up
-set $right Right
+set $left h
+set $down j
+set $up k
+set $right l
 
 # set focus shortcuts
 bindsym $mod+$left focus left
@@ -28,20 +28,20 @@ bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 
 # change orientation
-bindsym $mod+h split h
-bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change view
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+t layout tabbed
+bindsym $mod+s layout toggle split
 
 # change mode
 bindsym $mod+Shift+space floating toggle
 
 # move floating window
 floating_modifier $mod
+
+# windows that should always be floating
+for_window [title="Android Emulator - Pixel_2_API_28:5554"] floating enable
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -137,7 +137,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 ###############################################################################
 bindsym $mod+Return exec kitty
 bindsym $mod+d exec rofi -show drun
-bindsym $mod+l exec rofi -show window
+bindsym $mod+n exec rofi -show window
 bindsym --release Print exec --no-startup-id import ~/Pictures/screenshot`date +%Y-%m-%d_%H:%M:%S`.png
 
 ###############################################################################
@@ -151,6 +151,7 @@ font pango:Font Awesome 11
 exec_always --no-startup-id feh --conversion-timeout 1 --bg-scale ~/Pictures/mountain.jpg
 
 # border
+default_border pixel 0
 for_window [class=".*"] border pixel 0
 hide_edge_borders smart
 
@@ -163,12 +164,11 @@ smart_gaps on
 popup_during_fullscreen smart
 
 # colorclass - border - background - text - indicator - child_border
-client.focused              #ffffff #ffffff #31363D #ffffff #ffffff
-client.focused_inactive     #E0E0E0 #E0E0E0 #31363D #E0E0E0 #E0E0E0
-client.unfocused            #E0E0E0 #E0E0E0 #31363D #E0E0E0 #E0E0E0
-client.urgent               #E0E0E0 #E0E0E0 #31363D #E0E0E0 #E0E0E0
-client.placeholder          #E0E0E0 #E0E0E0 #31363D #E0E0E0 #E0E0E0
-client.background           #E0E0E0
+client.focused              #ffffff #ffffff #31363D #31363D #ffffff
+client.focused_inactive     #E0E0E0 #E0E0E0 #31363D #31363D #E0E0E0
+client.unfocused            #E0E0E0 #E0E0E0 #31363D #31363D #E0E0E0
+client.urgent               #E0E0E0 #E0E0E0 #31363D #31363D #E0E0E0
+client.placeholder          #E0E0E0 #E0E0E0 #31363D #31363D #E0E0E0
 
 ###############################################################################
 # Bar
@@ -188,6 +188,6 @@ bar {
                 focused_workspace       #ffffff #ffffff #31363D
                 active_workspace        #ffffff #ffffff #62686f
                 inactive_workspace      #ffffff #ffffff #62686f
-                urgent_workspacei       #ffffff #ffffff #ff6087
+                urgent_workspace       #ff6087 #ff6087 #31363D
         }
 }

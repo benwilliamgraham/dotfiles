@@ -15,7 +15,7 @@
     "**/.mypy_cache": true
   },
   "editor.accessibilitySupport": "off",
-  "editor.minimap.renderCharacters": true,
+  "editor.minimap.enabled": false,
   "editor.formatOnSave": true,
   "editor.renderIndentGuides": false,
   "editor.mouseWheelZoom": true,
