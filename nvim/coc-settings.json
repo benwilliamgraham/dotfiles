@@ -1,0 +1,32 @@
+{
+  "coc.preferences.formatOnTypeFiletypes": [
+    "python",
+    "javascript",
+    "json",
+    "c",
+    "c++",
+    "html",
+    "css"
+  ],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "python",
+    "javascript",
+    "json",
+    "c",
+    "c++",
+    "html",
+    "css"
+  ],
+  "coc.preferences.hoverTarget": "float",
+  "suggest.floatEnable": true,
+  "signature.target": "float",
+  "coc.preferences.formatOnType": true,
+  "python.jediEnabled": false,
+  "python.autoUpdateLanguageServer": true,
+  "python.formatting.provider": "black",
+  "python.linting.mypyEnabled": true,
+  "python.linting.mypyArgs": ["--strict"],
+  "python.linting.pylintEnabled": true,
+  "python.linting.lintOnSave": true,
+  "coc.preferences.formatOnInsertLeave": true
+}
