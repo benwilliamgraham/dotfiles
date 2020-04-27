@@ -12,20 +12,23 @@ set $down j
 set $up k
 set $right l
 
+# setup mouse warp
+set $warp exec "~/.config/i3/warp.sh"
+
 # set focus shortcuts
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
+bindsym $mod+$left focus left; $warp
+bindsym $mod+$down focus down; $warp
+bindsym $mod+$up focus up; $warp
+bindsym $mod+$right focus right; $warp
 bindsym $mod+a focus parent
 bindsym $mod+space focus mode_toggle
 focus_on_window_activation smart
 
 # move focused window
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+$left move left; $warp
+bindsym $mod+Shift+$down move down; $warp
+bindsym $mod+Shift+$up move up; $warp
+bindsym $mod+Shift+$right move right; $warp
 
 # change orientation
 bindsym $mod+f fullscreen toggle
@@ -152,7 +155,6 @@ exec_always --no-startup-id feh --conversion-timeout 1 --bg-scale ~/Pictures/mou
 
 # border
 default_border pixel 0
-for_window [class=".*"] border pixel 0
 hide_edge_borders smart
 
 # gaps
@@ -165,10 +167,10 @@ popup_during_fullscreen smart
 
 # colorclass - border - background - text - indicator - child_border
 client.focused              #ffffff #ffffff #31363D #31363D #ffffff
-client.focused_inactive     #E0E0E0 #E0E0E0 #31363D #31363D #E0E0E0
-client.unfocused            #E0E0E0 #E0E0E0 #31363D #31363D #E0E0E0
-client.urgent               #E0E0E0 #E0E0E0 #31363D #31363D #E0E0E0
-client.placeholder          #E0E0E0 #E0E0E0 #31363D #31363D #E0E0E0
+client.focused_inactive     #31362D #31362D #31363D #31363D #31362D
+client.unfocused            #31362D #31362D #31363D #31363D #31362D
+client.urgent               #31362D #31362D #31363D #31363D #31362D
+client.placeholder          #31362D #31362D #31363D #31363D #31362D
 
 ###############################################################################
 # Bar
@@ -188,6 +190,6 @@ bar {
                 focused_workspace       #ffffff #ffffff #31363D
                 active_workspace        #ffffff #ffffff #62686f
                 inactive_workspace      #ffffff #ffffff #62686f
-                urgent_workspace       #ff6087 #ff6087 #31363D
+                urgent_workspace        #dc322f #dc322f #31363D
         }
 }
