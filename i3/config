@@ -35,7 +35,8 @@ bindsym $mod+f fullscreen toggle
 
 # change view
 bindsym $mod+t layout tabbed
-bindsym $mod+s layout toggle split
+bindsym $mod+g layout toggle split
+bindsym $mod+s split toggle
 
 # change mode
 bindsym $mod+Shift+space floating toggle
