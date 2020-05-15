@@ -6,12 +6,15 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'preservim/nerdcommenter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'sheerun/vim-polyglot'
-Plug 'lifepillar/vim-solarized8'
 Plug 'yuttie/comfortable-motion.vim'
+Plug 'lifepillar/vim-solarized8'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 " General Settings
 set relativenumber number
+set exrc
+set secure
 
 " file specific formats
 set smartindent
@@ -24,14 +27,19 @@ au BufNewFile,BufRead *.py
   \ set softtabstop=4
   \ set shiftwidth=4
 
+au BufNewFile,BufRead *.h,*.c set filetype=c
+
 " Keybindings
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-nmap <C-l> :NERDTreeToggle<CR>
+imap jk <Esc>
+nmap <Tab> :bn<CR>
+nmap <S-Tab> :bp<CR>
+nmap <C-w> :bd<CR>
+nmap <C-n> :NERDTreeToggle<CR>
 nmap <C-p> :FZF<CR>
-nmap <C-n> :silent :! kitty --detach -d $(pwd) nvim<CR>
+
+" Launchers
+nmap <M-t> :silent :! kitty --detach -d $(pwd) <CR>
+nmap <M-e> :silent :! kitty --detach -d $(pwd) nvim <CR>
 
 " Themes
 set background=dark
@@ -60,6 +68,7 @@ set statusline+=\ C:%c
 " Comments
 let g:NERDSpaceDelims = 1
 nmap <C-_> <Plug>NERDCommenterToggle
+imap <C-_> <esc><Plug>NERDCommenterToggle
 vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
 
 " Coc
@@ -176,8 +185,9 @@ omap af <Plug>(coc-funcobj-a)
 " Use <TAB> for selections ranges.
 " NOTE: Requires 'textDocument/selectionRange' support from the language server.
 " coc-tsserver, coc-python are the examples of servers that support it.
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
+" THIS HAS BEEN DISABLED
+" nmap <silent> <TAB> <Plug>(coc-range-select)
+" xmap <silent> <TAB> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')

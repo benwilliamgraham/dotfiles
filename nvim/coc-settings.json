@@ -27,6 +27,5 @@
   "python.linting.mypyEnabled": true,
   "python.linting.mypyArgs": ["--strict"],
   "python.linting.pylintEnabled": true,
-  "python.linting.lintOnSave": true,
-  "coc.preferences.formatOnInsertLeave": true
+  "python.linting.lintOnSave": true
 }

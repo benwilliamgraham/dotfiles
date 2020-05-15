@@ -34,8 +34,6 @@ bindsym $mod+Shift+$right move right; $warp
 bindsym $mod+f fullscreen toggle
 
 # change view
-bindsym $mod+t layout tabbed
-bindsym $mod+g layout toggle split
 bindsym $mod+s split toggle
 
 # change mode
@@ -139,7 +137,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 ###############################################################################
 # Launchers
 ###############################################################################
-bindsym $mod+Return exec kitty
+bindsym $mod+t exec kitty
+bindsym $mod+e exec kitty nvim
 bindsym $mod+d exec rofi -show drun
 bindsym $mod+n exec rofi -show window
 bindsym --release Print exec --no-startup-id import ~/Pictures/screenshot`date +%Y-%m-%d_%H:%M:%S`.png
@@ -168,10 +167,10 @@ popup_during_fullscreen smart
 
 # colorclass - border - background - text - indicator - child_border
 client.focused              #ffffff #ffffff #31363D #31363D #ffffff
-client.focused_inactive     #31362D #31362D #31363D #31363D #31362D
-client.unfocused            #31362D #31362D #31363D #31363D #31362D
-client.urgent               #31362D #31362D #31363D #31363D #31362D
-client.placeholder          #31362D #31362D #31363D #31363D #31362D
+client.focused_inactive     #EAEAEA #EAEAEA #31363D #31363D #31362D
+client.unfocused            #EAEAEA #EAEAEA #31363D #31363D #31362D
+client.urgent               #EAEAEA #EAEAEA #31363D #31363D #31362D
+client.placeholder          #EAEAEA #EAEAEA #31363D #31363D #31362D
 
 ###############################################################################
 # Bar
