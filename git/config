@@ -33,4 +33,5 @@
   rmtv = remote --verbose
   rt = reset
   rth = reset --hard
+  s = status
   wc = whatchanged
