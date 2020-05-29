@@ -2,6 +2,10 @@
   name = Benjamin Graham
   email = benwilliamgraham@gmail.com
 
+
+[credential]
+	helper = store
+
 [alias]
   a = add
   aa = add --all
