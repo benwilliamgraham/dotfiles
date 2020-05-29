@@ -73,6 +73,7 @@ vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
 
 " Coc
 let g:coc_global_extensions = [
+  \ 'coc-git',
   \ 'coc-snippets',
   \ 'coc-pairs',
   \ 'coc-prettier',

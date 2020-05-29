@@ -1,0 +1,32 @@
+[user]
+  name = Benjamin Graham
+  email = benwilliamgraham@gmail.com
+
+[alias]
+  a = add
+  aa = add --all
+  ap = add --patch
+  au = add --update
+  b = branch
+  d = diff
+  dh = diff HEAD
+  ds = diff --stat
+  dsh = diff --stat HEAD
+  c = commit
+  ca = commit --all
+  cam = commit --amend
+  ch = checkout
+  l = log
+  p = push
+  pf = push --force
+  pl = pull
+  r = rebase
+  ra = rebase --abort
+  rc = rebase --continue
+  ri = rebase --interactive
+  rs = rebase --skip
+  rmt = remote
+  rmtv = remote --verbose
+  rt = reset
+  rth = reset --hard
+  wc = whatchanged
