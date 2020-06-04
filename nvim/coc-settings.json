@@ -25,7 +25,7 @@
   "python.autoUpdateLanguageServer": true,
   "python.formatting.provider": "black",
   "python.linting.mypyEnabled": true,
-  "python.linting.mypyArgs": ["--strict"],
+  "python.linting.mypyArgs": [],
   "python.linting.pylintEnabled": true,
   "python.linting.lintOnSave": true
 }

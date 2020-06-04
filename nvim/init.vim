@@ -31,9 +31,9 @@ au BufNewFile,BufRead *.h,*.c set filetype=c
 
 " Keybindings
 imap jk <Esc>
-nmap <Tab> :bn<CR>
-nmap <S-Tab> :bp<CR>
-nmap <C-w> :bd<CR>
+nmap <C-k> :bn<CR>
+nmap <C-j> :bp<CR>
+nmap <C-q> :bd<CR>
 nmap <C-n> :NERDTreeToggle<CR>
 nmap <C-p> :FZF<CR>
 
@@ -80,7 +80,8 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-python',
   \ 'coc-clangd',
-  \ 'coc-tsserver'
+  \ 'coc-tsserver',
+  \ 'coc-rls',
   \ ]
 
 " TextEdit might fail if hidden is not set.
