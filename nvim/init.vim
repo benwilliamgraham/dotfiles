@@ -8,6 +8,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'sheerun/vim-polyglot'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'lifepillar/vim-solarized8'
+Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
 call plug#end()
 
@@ -19,13 +22,9 @@ set secure
 " file specific formats
 set smartindent
 set expandtab
-set shiftwidth=2
-set softtabstop=2
-
-au BufNewFile,BufRead *.py
-  \ set tabstop=4
-  \ set softtabstop=4
-  \ set shiftwidth=4
+set shiftwidth=4
+set softtabstop=4
+set shiftwidth=4
 
 au BufNewFile,BufRead *.h,*.c set filetype=c
 
@@ -44,7 +43,7 @@ nmap <M-e> :silent :! kitty --detach -d $(pwd) nvim <CR>
 " Themes
 set background=dark
 set termguicolors
-colorscheme solarized8
+colorscheme nord
 
 " Status-line
 function! GitBranch()

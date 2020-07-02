@@ -1,22 +1,4 @@
 {
-  "coc.preferences.formatOnTypeFiletypes": [
-    "python",
-    "javascript",
-    "json",
-    "c",
-    "c++",
-    "html",
-    "css"
-  ],
-  "coc.preferences.formatOnSaveFiletypes": [
-    "python",
-    "javascript",
-    "json",
-    "c",
-    "c++",
-    "html",
-    "css"
-  ],
   "coc.preferences.hoverTarget": "float",
   "suggest.floatEnable": true,
   "signature.target": "float",

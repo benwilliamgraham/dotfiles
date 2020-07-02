@@ -18,7 +18,7 @@ echo_git () {
     echo -n -e "\033[90m$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p ")\033[0m"
 }
 
-PS1='$(echo_success) bwg\033[90m@\033[94m\h \033[96m\w\033[0m $(echo_git)\n > '
+PS1='$(echo_success) bwg\033[90m@\033[94m\h \033[96m\w\033[0m $(echo_git)\n-> '
 
 # fzf
 export FZF_DEFAULT_COMMAND="find -L ! -path '*.git*' ! -path '*.mypy_cache*' ! -path '*__pycache__*' ! -path '*node_modules*'"
