@@ -3,6 +3,7 @@ call plug#begin('~/local/share/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 " themes
 Plug 'lifepillar/vim-solarized8'
@@ -18,6 +19,7 @@ set exrc
 set secure
 set cmdheight=1
 set signcolumn=yes
+set clipboard+=unnamed
 
 " file specific formats
 set smartindent
@@ -42,7 +44,9 @@ imap jk <Esc>
 nmap <C-k> :bn<CR>
 nmap <C-j> :bp<CR>
 nmap <C-q> :bd<CR>
-nmap <C-p> :FZF<CR>
+nmap <C-p> :Files<CR>
+nmap <C-f> :Rg<CR>
+nmap <C-b> :Buffers<CR>
 nmap <C-e> :CocCommand explorer<CR>
 nmap gd <Plug>(coc-definition)
 nmap gy <Plug>(coc-type-definition)
@@ -107,6 +111,7 @@ let g:coc_global_extensions = [
   \ 'coc-vimtex',
   \ 'coc-tabnine',
   \ 'coc-explorer',
+  \ 'coc-go',
   \ ]
 
 set updatetime=300
