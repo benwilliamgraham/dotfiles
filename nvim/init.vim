@@ -97,6 +97,9 @@ nmap <C-_> <Plug>NERDCommenterToggle
 imap <C-_> <esc><Plug>NERDCommenterToggle
 vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
 
+" FZF
+let g:fzf_preview_window = 'right:60%'
+
 " Coc
 let g:coc_global_extensions = [
   \ 'coc-git',
