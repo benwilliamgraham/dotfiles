@@ -20,6 +20,9 @@ set secure
 set cmdheight=1
 set signcolumn=yes
 set clipboard+=unnamed
+set splitbelow
+set splitright
+:autocmd VimResized * wincmd =
 
 " file specific formats
 set smartindent
@@ -41,17 +44,23 @@ au BufNewFile,BufRead *.go set
 
 " Keybindings
 imap jk <Esc>
-nmap <C-k> :bn<CR>
-nmap <C-j> :bp<CR>
-nmap <C-q> :bd<CR>
-nmap <C-p> :Files<CR>
-nmap <C-f> :Rg<CR>
-nmap <C-b> :Buffers<CR>
-nmap <C-e> :CocCommand explorer<CR>
-nmap gd <Plug>(coc-definition)
-nmap gy <Plug>(coc-type-definition)
-nmap gi <Plug>(coc-implementation)
-nmap gr <Plug>(coc-references)
+nnoremap <C-space> <C-w>v<C-w>r
+nnoremap <C-j> <C-w>r<C-w>h
+nnoremap <C-k> <C-w>R<C-w>h
+nnoremap <C-l> :bn<CR>
+nnoremap <C-h> :bp<CR>
+nnoremap <C-w> :bd<CR>
+nnoremap <C-q> :q<CR>
+nnoremap <C-p> :Files<CR>
+nnoremap <C-f> :Rg<CR>
+nnoremap <C-b> :Buffers<CR>
+nnoremap <C-e> :CocCommand explorer<CR>
+nnoremap <C-t> :te<CR>i
+tmap jk <C-\><C-n>
+nnoremap gd <Plug>(coc-definition)
+nnoremap gy <Plug>(coc-type-definition)
+nnoremap gi <Plug>(coc-implementation)
+nnoremap gr <Plug>(coc-references)
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -63,14 +72,16 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Launchers
-nmap <M-t> :silent :! kitty --detach -d $(pwd) <CR>
-nmap <M-e> :silent :! kitty --detach -d $(pwd) nvim <CR>
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
 " Themes
 set background=dark
 set termguicolors
-colorscheme solarized8
+colorscheme gruvbox
 
 " Status-line
 function! GitBranch()
