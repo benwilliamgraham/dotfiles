@@ -15,7 +15,7 @@ echo_success () {
 }
 
 echo_git () {
-    echo -n -e "\033[90$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p ")\033[0m"
+    echo -n -e "\033[90m$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p ")\033[0m"
 }
 
 PS1='$(echo_success) bwg\033[90m@\033[94m\h \033[96m\w\033[0m $(echo_git)\n-> '
