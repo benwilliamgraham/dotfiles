@@ -11,6 +11,8 @@ Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
+Plug 'ayu-theme/ayu-vim'
+Plug 'chriskempson/base16-vim'
 call plug#end()
 
 " General Settings
@@ -19,9 +21,11 @@ set exrc
 set secure
 set cmdheight=1
 set signcolumn=yes
-set clipboard+=unnamed
+set clipboard+=unnamedplus
 set splitbelow
 set splitright
+set scrolloff=999
+set switchbuf=usetab,newtab
 :autocmd VimResized * wincmd =
 
 " file specific formats
@@ -37,24 +41,24 @@ au BufNewFile,BufRead *.h,*.c set
     \ filetype=c
     \ shiftwidth=2
     \ softtabstop=2
-    \ shiftwidth=2
 
-au BufNewFile,BufRead *.go set
+au BufNewFile,BufRead *.go,make set
     \ noexpandtab
+	\ shiftwidth=2
+	\ tabstop=2
 
 " Keybindings
 imap jk <Esc>
-nnoremap <C-space> <C-w>v<C-w>r
-nnoremap <C-j> <C-w>r<C-w>h
-nnoremap <C-k> <C-w>R<C-w>h
-nnoremap <C-l> :bn<CR>
-nnoremap <C-h> :bp<CR>
+nnoremap <A-r> :tabo<CR>:tab ball<CR>
+nnoremap <C-j> :tabp<CR>
+nnoremap <C-k> :tabn<CR>
+nnoremap <C-l> :+tabmove<CR>
+nnoremap <C-h> :-tabmove<CR>
 nnoremap <C-w> :bd<CR>
 nnoremap <C-q> :q<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-f> :Rg<CR>
 nnoremap <C-b> :Buffers<CR>
-nnoremap <C-e> :CocCommand explorer<CR>
 nnoremap <C-t> :te<CR>i
 tmap jk <C-\><C-n>
 nnoremap gd <Plug>(coc-definition)
@@ -81,7 +85,14 @@ endif
 " Themes
 set background=dark
 set termguicolors
-colorscheme gruvbox
+let ayucolor="mirage"
+" colorscheme ayu
+" colorscheme base16-atlas
+" colorscheme base16-tomorrow-night
+" colorscheme base16-phd
+colorscheme base16-irblack
+" colorscheme nord
+" colorscheme solarized8
 
 " Status-line
 function! GitBranch()
