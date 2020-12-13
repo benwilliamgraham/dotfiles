@@ -13,6 +13,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
 Plug 'ayu-theme/ayu-vim'
 Plug 'chriskempson/base16-vim'
+Plug 'drewtempelmeyer/palenight.vim'
 call plug#end()
 
 " General Settings
@@ -24,8 +25,9 @@ set signcolumn=yes
 set clipboard+=unnamedplus
 set splitbelow
 set splitright
-set scrolloff=999
+set scrolloff=2
 set switchbuf=usetab,newtab
+au BufNewFile,BufRead * nested tab sball
 :autocmd VimResized * wincmd =
 
 " file specific formats
