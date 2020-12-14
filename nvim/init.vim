@@ -26,8 +26,6 @@ set clipboard+=unnamedplus
 set splitbelow
 set splitright
 set scrolloff=2
-set switchbuf=usetab,newtab
-au BufNewFile,BufRead * nested tab sball
 :autocmd VimResized * wincmd =
 
 " file specific formats
@@ -52,16 +50,17 @@ au BufNewFile,BufRead *.go,make set
 " Keybindings
 imap jk <Esc>
 nnoremap <A-r> :tabo<CR>:tab ball<CR>
+nnoremap <C-t> :tabnew<CR>
 nnoremap <C-j> :tabp<CR>
 nnoremap <C-k> :tabn<CR>
 nnoremap <C-l> :+tabmove<CR>
 nnoremap <C-h> :-tabmove<CR>
+nnoremap <C-c> :tabclose<CR>
 nnoremap <C-w> :bd<CR>
-nnoremap <C-q> :q<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-f> :Rg<CR>
 nnoremap <C-b> :Buffers<CR>
-nnoremap <C-t> :te<CR>i
+nnoremap <C-Space> :te<CR>i
 tmap jk <C-\><C-n>
 nnoremap gd <Plug>(coc-definition)
 nnoremap gy <Plug>(coc-type-definition)
@@ -92,9 +91,9 @@ let ayucolor="mirage"
 " colorscheme base16-atlas
 " colorscheme base16-tomorrow-night
 " colorscheme base16-phd
-colorscheme base16-irblack
+" colorscheme base16-irblack
 " colorscheme nord
-" colorscheme solarized8
+colorscheme solarized8
 
 " Status-line
 function! GitBranch()
