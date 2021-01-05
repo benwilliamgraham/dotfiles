@@ -14,6 +14,8 @@ Plug 'morhetz/gruvbox'
 Plug 'ayu-theme/ayu-vim'
 Plug 'chriskempson/base16-vim'
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'dracula/vim', {'as':'dracula'}
+Plug 'romgrk/doom-one.vim'
 call plug#end()
 
 " General Settings
@@ -25,7 +27,8 @@ set signcolumn=yes
 set clipboard+=unnamedplus
 set splitbelow
 set splitright
-set scrolloff=2
+set scrolloff=1
+set mouse=a
 :autocmd VimResized * wincmd =
 
 " file specific formats
@@ -88,12 +91,12 @@ set background=dark
 set termguicolors
 let ayucolor="mirage"
 " colorscheme ayu
-" colorscheme base16-atlas
+colorscheme base16-atlas
 " colorscheme base16-tomorrow-night
 " colorscheme base16-phd
 " colorscheme base16-irblack
 " colorscheme nord
-colorscheme solarized8
+" colorscheme solarized8
 
 " Status-line
 function! GitBranch()

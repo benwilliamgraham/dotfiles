@@ -26,5 +26,6 @@ export FZF_DEFAULT_COMMAND="find -L ! -path '*.git*' ! -path '*.mypy_cache*' ! -
 # input rate
 xset r rate 200 30
 
+# editor settings
 export EDITOR="nvim"
 export VISUAL="nvim"

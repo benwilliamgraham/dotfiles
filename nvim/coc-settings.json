@@ -11,5 +11,6 @@
       "args": ["config", "exec", "--", "ocamllsp"],
       "filetypes": ["ocaml"]
     }
-  }
+  },
+  "git.enableGutters": true
 }

@@ -1,7 +1,7 @@
 #include "config.h"
 #include "soswm.h"
 
-unsigned int gap_pixels = 0;
+unsigned int gap_pixels = 8;
 float default_win_ratio = 1.f;
 
 KeyBind keybinds[] = {
@@ -85,4 +85,7 @@ KeyBind keybinds[] = {
 
 const unsigned int num_keybinds = sizeof(keybinds) / sizeof(*keybinds);
 
-void startup() { window_push(PROG_ARG("gnome-flashback")); }
+void startup() { 
+  window_push(PROG_ARG("feh", "--bg-scale", "/usr/share/backgrounds/f33/default/f33.png"));
+  window_push(PROG_ARG("gnome-flashback"));
+}
