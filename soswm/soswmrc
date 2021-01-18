@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# start keybindings
+killall sxhkd
+sxhkd &
+
+# set wallpaper
+feh --bg-scale /usr/share/backgrounds/gnome/adwaita-night.jpg
+
+# set default sizing
+$HOME/.config/soswm/splitmode.py 1 4

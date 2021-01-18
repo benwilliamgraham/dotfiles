@@ -1,0 +1,59 @@
+# window manager commands
+super + shift + n
+    sosc push stack
+
+super + {_,shift + } q
+    sosc pop {window,stack}
+
+super + {_,shift + }{0-9}
+    sosc swap {window,stack} {0-9}
+
+super + {_,shift + }{j,k}
+    sosc roll {window,stack} {bottom,top}
+
+super + ctrl + {0-9}
+    sosc move window {0-9}
+
+super + ctrl + n
+    sosc push stack; \
+    sosc swap stack 1; \
+    sosc move window 1; \
+    sosc swap stack 1
+
+super + alt + l
+    sosc logout wm
+
+super + s; {1,2}
+    $HOME/.config/soswm/splitmode.py {1,2} 4
+
+# general
+super + alt + {s,h}
+    systemctl {suspend,hibernate}
+
+super + alt + r
+    pkill -USR1 -x sxhkd
+
+{XF86AudioRaiseVolume,XF86AudioLowerVolume}
+    amixer set Master 5%{+,-}
+
+XF86AudioMute
+    amixer -D pulse set Master 1+ toggle
+
+{XF86MonBrightnessUp,XF86MonBrightnessDown}
+    $HOME/.config/soswm/brightness.py {+,-}0.05
+
+super + p
+    maim "$HOME/Pictures/Screenshot-$(date).png"
+
+# launchers
+super + space
+    rofi -show run
+
+super + t
+    kitty
+
+super + e
+    kitty nvim
+
+super + c
+    google-chrome
