@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =8
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/bgraham/build18'
 let g:netrw_dirhist_8='/home/bgraham/.config/sxhkd'
 let g:netrw_dirhist_7='/home/bgraham/soswm/.git'
 let g:netrw_dirhist_6='/home/bgraham/moon/src'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_3='/home/bgraham/15440/p3/src'
 let g:netrw_dirhist_2='/home/bgraham/15440/p3/src/github.com'
 let g:netrw_dirhist_1='/home/bgraham/15440/p3/src/github.com/cmu440/tribbler'
 let g:netrw_dirhist_0='/home/bgraham/15440/p3/src/github.com/cmu440/tribbler/tests_cp'
-let g:netrw_dirhist_9='/home/bgraham/15440/p3/src/github.com/cmu440/tribbler/tests_cp/storagetest'

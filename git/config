@@ -39,3 +39,5 @@
   rth = reset --hard
   s = status
   wc = whatchanged
+[init]
+	defaultBranch = main

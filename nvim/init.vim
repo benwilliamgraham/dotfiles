@@ -1,10 +1,13 @@
 " Plugins
+let g:polyglot_disabled = ['ftdetect', 'c', 'c++']
+let g:lsp_cxx_hl_use_text_props = 1
 call plug#begin('~/local/share/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 " themes
 Plug 'lifepillar/vim-solarized8'
 Plug 'bluz71/vim-nightfly-guicolors'
@@ -50,21 +53,17 @@ au BufNewFile,BufRead *.go,make set
 	\ shiftwidth=2
 	\ tabstop=2
 
+au BufNewFile,BufRead *.vert,*.frag set
+    \ filetype=glsl
+
+au BufNewFile,BufRead .clang-* set
+    \ filetype=yaml
+
 " Keybindings
 imap jk <Esc>
-nnoremap <A-r> :tabo<CR>:tab ball<CR>
-nnoremap <C-t> :tabnew<CR>
-nnoremap <C-j> :tabp<CR>
-nnoremap <C-k> :tabn<CR>
-nnoremap <C-l> :+tabmove<CR>
-nnoremap <C-h> :-tabmove<CR>
-nnoremap <C-c> :tabclose<CR>
-nnoremap <C-w> :bd<CR>
-nnoremap <C-p> :Files<CR>
-nnoremap <C-f> :Rg<CR>
-nnoremap <C-b> :Buffers<CR>
-nnoremap <C-Space> :te<CR>i
 tmap jk <C-\><C-n>
+nnoremap <C-p> :Files<CR>
+nnoremap <C-b> :Buffers<CR>
 nnoremap gd <Plug>(coc-definition)
 nnoremap gy <Plug>(coc-type-definition)
 nnoremap gi <Plug>(coc-implementation)
@@ -91,12 +90,14 @@ set background=dark
 set termguicolors
 let ayucolor="mirage"
 " colorscheme ayu
-colorscheme base16-atlas
+" colorscheme base16-atlas
+" colorscheme base16-dracula
 " colorscheme base16-tomorrow-night
 " colorscheme base16-phd
 " colorscheme base16-irblack
 " colorscheme nord
 " colorscheme solarized8
+colorscheme doom-one
 
 " Status-line
 function! GitBranch()

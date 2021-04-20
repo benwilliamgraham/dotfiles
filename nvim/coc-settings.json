@@ -1,8 +1,17 @@
 {
-  "coc.preferences.hoverTarget": "float",
+  "clangd.semanticHighlighting": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "json",
+    "html",
+    "javascript",
+    "yaml",
+    "python"
+  ],
   "suggest.floatEnable": true,
   "signature.target": "float",
-  "python.jediEnabled": false,
+  "python.jediEnabled": true,
   "python.autoUpdateLanguageServer": true,
   "python.formatting.provider": "black",
   "languageserver": {

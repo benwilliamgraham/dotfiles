@@ -43,7 +43,10 @@ XF86AudioMute
     $HOME/.config/soswm/brightness.py {+,-}0.05
 
 super + p
-    maim "$HOME/Pictures/Screenshot-$(date).png"
+    maim "$HOME/Pictures/Screenshot-$(date +%s:%N).png"
+
+super + shift + p
+    gnome-screenshot -a
 
 # launchers
 super + space

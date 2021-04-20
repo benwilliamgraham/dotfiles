@@ -8,18 +8,20 @@ import subprocess, re, sys
 num_splits = 1 if sys.argv[1] == "1" else 2
 gap = int(sys.argv[2])
 
-mon_strs = (
-    subprocess.check_output(["xrandr", "--listactivemonitors"])
-    .decode("utf-8")
-    .split("\n")[1:-1]
-)
+mon_strs = [
+    line
+    for line in subprocess.check_output(["xrandr"]).decode("utf-8").split("\n")
+    if " connected" in line
+]
 
 splits = []
 
 for mon_str in mon_strs:
-    width, _, height, _, x, y = [
-        int(num_str) for num_str in re.findall("[0-9]+", mon_str.split()[2])
+    width, height, x, y = [
+        int(num_str)
+        for num_str in re.findall("([0-9]+)x([0-9]+)\+([0-9]+)\+([0-9]+)", mon_str)[0]
     ]
+
     if num_splits == 1:
         splits.append(f"{width + gap * 2}x{height + gap * 2}+{x - gap}+{y - gap}")
     else:
