@@ -1,13 +1,17 @@
 " Plugins
-let g:polyglot_disabled = ['ftdetect', 'c', 'c++']
+let g:polyglot_disabled = ['ftdetect', 'c', 'c++', 'python' ]
 let g:lsp_cxx_hl_use_text_props = 1
+let g:python_highlight_all = 1
 call plug#begin('~/local/share/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'jnurmine/Zenburn'
+" highlighting
 Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'vim-python/python-syntax'
 " themes
 Plug 'lifepillar/vim-solarized8'
 Plug 'bluz71/vim-nightfly-guicolors'
@@ -98,6 +102,7 @@ let ayucolor="mirage"
 " colorscheme nord
 " colorscheme solarized8
 colorscheme doom-one
+" colorscheme gruvbox
 
 " Status-line
 function! GitBranch()
