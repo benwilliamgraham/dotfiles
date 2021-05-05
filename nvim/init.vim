@@ -2,6 +2,7 @@
 let g:polyglot_disabled = ['ftdetect', 'c', 'c++', 'python' ]
 let g:lsp_cxx_hl_use_text_props = 1
 let g:python_highlight_all = 1
+let g:doom_one_terminal_colors = 1
 call plug#begin('~/local/share/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
@@ -66,12 +67,12 @@ au BufNewFile,BufRead .clang-* set
 " Keybindings
 imap jk <Esc>
 tmap jk <C-\><C-n>
-nnoremap <C-p> :Files<CR>
-nnoremap <C-b> :Buffers<CR>
-nnoremap gd <Plug>(coc-definition)
-nnoremap gy <Plug>(coc-type-definition)
-nnoremap gi <Plug>(coc-implementation)
-nnoremap gr <Plug>(coc-references)
+nmap <C-p> :Files<CR>
+nmap <C-b> :Buffers<CR>
+nmap gd <Plug>(coc-definition)
+nmap gy <Plug>(coc-type-definition)
+nmap gi <Plug>(coc-implementation)
+nmap gr <Plug>(coc-references)
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
