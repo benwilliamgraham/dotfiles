@@ -3,6 +3,7 @@ vim.o.mouse = 'a'
 vim.cmd 'set clipboard+=unnamedplus'
 vim.o.foldlevelstart = 99
 vim.o.foldlevel = 99
+vim.o.updatetime = 100
 
 vim.bo.expandtab = true
 vim.bo.shiftwidth = 4
@@ -86,6 +87,13 @@ paq {'junegunn/fzf.vim'}
 vim.api.nvim_set_keymap('n', '<C-p>', ':Files<CR>', {noremap = false})
 vim.api.nvim_set_keymap('n', '<C-b>', ':Buffers<CR>', {noremap = false})
 vim.api.nvim_set_keymap('n', '<C-_>', ':Rg<CR>', {noremap = false})
+
+-- Git
+paq {'tpope/vim-fugitive'}
+paq {'airblade/vim-gitgutter'}
+
+vim.api.nvim_set_keymap('n', '<space>gn', '<Plug>(GitGutterNextHunk)', {noremap = false})
+vim.api.nvim_set_keymap('n', '<space>gp', '<Plug>(GitGutterPrevHunk)', {noremap = false})
 
 -- Themes
 paq {'romgrk/doom-one.vim'}
