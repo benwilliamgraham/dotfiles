@@ -1,6 +1,7 @@
 -- Editor
 vim.o.mouse = 'a'
 vim.cmd 'set clipboard+=unnamedplus'
+vim.cmd 'set completeopt-=preview'
 vim.o.foldlevelstart = 99
 vim.o.foldlevel = 99
 vim.o.updatetime = 100
@@ -9,10 +10,12 @@ vim.bo.expandtab = true
 vim.bo.shiftwidth = 4
 vim.bo.tabstop = 4
 vim.bo.softtabstop = 4
+vim.bo.autoindent = true
 
 vim.wo.relativenumber = true
 vim.wo.number = true
 vim.wo.linebreak = true
+vim.wo.colorcolumn = '80'
 
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', {noremap = false})
 vim.api.nvim_set_keymap('t', 'jk', '<C-\\><C-n>', {noremap = false})
@@ -27,7 +30,6 @@ paq {'nvim-treesitter/nvim-treesitter'}
 require 'nvim-treesitter.configs'.setup {
     ensure_installed = 'maintained',
     highlight = {enable = true},
-    indent = {enable = true},
 }
 
 vim.o.foldmethod='expr'
@@ -75,7 +77,19 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<space>p', '<Cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 end
 
-lsp.pyls.setup { on_attach = on_attach }
+lsp.pyls.setup {
+    on_attach = on_attach,
+    settings = {
+        pyls = {
+            plugins = {
+                pylint = {enabled = true},
+                pydocstyle = {enabled = true},
+                yapf = {enabled = true},
+		pyls_mypy = {enabled = true, live_mode = false},
+            }
+        }
+    }
+}
 lsp.clangd.setup { on_attach = on_attach }
 
 lspfuzzy.setup {}
@@ -107,4 +121,4 @@ vim.o.background = 'dark'
 vim.o.termguicolors = true
 vim.g.doom_one_terminal_colors = 1
 vim.g.ayucolor = 'mirage'
-vim.cmd 'colorscheme doom-one'
+vim.cmd 'colorscheme solarized8'
