@@ -1,21 +1,21 @@
 -- Editor
-vim.o.mouse = 'a'
-vim.cmd 'set clipboard+=unnamedplus'
-vim.cmd 'set completeopt-=preview'
-vim.o.foldlevelstart = 99
-vim.o.foldlevel = 99
-vim.o.updatetime = 100
+vim.opt.mouse = 'a'
+vim.opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
+vim.opt.completeopt:remove { 'preview' }
+vim.opt.foldlevelstart = 99
+vim.opt.foldlevel = 99
+vim.opt.updatetime = 100
 
-vim.bo.expandtab = true
-vim.bo.shiftwidth = 4
-vim.bo.tabstop = 4
-vim.bo.softtabstop = 4
-vim.bo.autoindent = true
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.autoindent = true
 
-vim.wo.relativenumber = true
-vim.wo.number = true
-vim.wo.linebreak = true
-vim.wo.colorcolumn = '80'
+vim.opt.relativenumber = true
+vim.opt.number = true
+vim.opt.linebreak = true
+vim.opt.colorcolumn = '80'
 
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', {noremap = false})
 vim.api.nvim_set_keymap('t', 'jk', '<C-\\><C-n>', {noremap = false})
@@ -32,8 +32,8 @@ require 'nvim-treesitter.configs'.setup {
     highlight = {enable = true},
 }
 
-vim.o.foldmethod='expr'
-vim.o.foldexpr='nvim_treesitter#foldexpr()'
+vim.opt.foldmethod='expr'
+vim.opt.foldexpr='nvim_treesitter#foldexpr()'
 
 -- Completion
 paq {'shougo/deoplete-lsp'}
@@ -99,6 +99,7 @@ paq {'junegunn/fzf', run = vim.fn['fzf#install']}
 paq {'junegunn/fzf.vim'}
 
 vim.api.nvim_set_keymap('n', '<C-p>', ':Files<CR>', {noremap = false})
+vim.api.nvim_set_keymap('n', '<C-q>', ':GFiles<CR>', {noremap = false})
 vim.api.nvim_set_keymap('n', '<C-b>', ':Buffers<CR>', {noremap = false})
 vim.api.nvim_set_keymap('n', '<C-_>', ':Rg<CR>', {noremap = false})
 
