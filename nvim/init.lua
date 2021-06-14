@@ -1,10 +1,10 @@
 -- Editor
 vim.opt.mouse = 'a'
 vim.opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
-vim.opt.completeopt:remove { 'preview' }
 vim.opt.foldlevelstart = 99
 vim.opt.foldlevel = 99
 vim.opt.updatetime = 100
+vim.opt.completeopt = 'menuone'
 
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
@@ -19,6 +19,7 @@ vim.opt.colorcolumn = '80'
 
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', {noremap = false})
 vim.api.nvim_set_keymap('t', 'jk', '<C-\\><C-n>', {noremap = false})
+vim.cmd 'autocmd VimResized * wincmd ='
 
 -- Plugin manager
 vim.cmd 'packadd paq-nvim'
@@ -72,7 +73,7 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'gr', '<Cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', '<space>h', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', '<space>r', '<Cmd>lua vim.lsp.buf.replace()<CR>', opts)
+    buf_set_keymap('n', '<space>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap('n', '<space>n', '<Cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>p', '<Cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 end
@@ -95,13 +96,63 @@ lsp.clangd.setup { on_attach = on_attach }
 lspfuzzy.setup {}
 
 -- Fuzzy finder
-paq {'junegunn/fzf', run = vim.fn['fzf#install']}
-paq {'junegunn/fzf.vim'}
+paq {'nvim-lua/popup.nvim'}
+paq {'nvim-lua/plenary.nvim'}
+paq {'nvim-telescope/telescope.nvim'}
 
-vim.api.nvim_set_keymap('n', '<C-p>', ':Files<CR>', {noremap = false})
-vim.api.nvim_set_keymap('n', '<C-q>', ':GFiles<CR>', {noremap = false})
-vim.api.nvim_set_keymap('n', '<C-b>', ':Buffers<CR>', {noremap = false})
-vim.api.nvim_set_keymap('n', '<C-_>', ':Rg<CR>', {noremap = false})
+require('telescope').setup{
+  defaults = {
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case'
+    },
+    prompt_position = "bottom",
+    prompt_prefix = "> ",
+    selection_caret = "> ",
+    entry_prefix = "  ",
+    initial_mode = "insert",
+    selection_strategy = "reset",
+    sorting_strategy = "descending",
+    layout_strategy = "horizontal",
+    layout_defaults = {
+      horizontal = {
+        mirror = false,
+      },
+      vertical = {
+        mirror = false,
+      },
+    },
+    file_sorter =  require'telescope.sorters'.get_fzy_sorter,
+    file_ignore_patterns = {'__pycache__/*'},
+    generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
+    shorten_path = true,
+    winblend = 0,
+    width = 0.75,
+    preview_cutoff = 120,
+    results_height = 1,
+    results_width = 0.8,
+    border = {},
+    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+    color_devicons = true,
+    use_less = true,
+    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
+    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+
+    -- Developer configurations: Not meant for general override
+    buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
+  }
+}
+
+vim.api.nvim_set_keymap('n', '<space>ff', ':Telescope find_files<CR>', {noremap = false})
+vim.api.nvim_set_keymap('n', '<space>fb', ':Telescope buffers<CR>', {noremap = false})
+vim.api.nvim_set_keymap('n', '<space>fg', ':Telescope live_grep<CR>', {noremap = false})
 
 -- Git
 paq {'tpope/vim-fugitive'}
@@ -118,8 +169,8 @@ paq {'ayu-theme/ayu-vim'}
 paq {'arcticicestudio/nord-vim'}
 paq {'rafi/awesome-vim-colorschemes'}
 
-vim.o.background = 'dark'
-vim.o.termguicolors = true
+vim.opt.background = 'dark'
+vim.opt.termguicolors = true
 vim.g.doom_one_terminal_colors = 1
 vim.g.ayucolor = 'mirage'
-vim.cmd 'colorscheme solarized8'
+vim.cmd 'colorscheme seoul256'
