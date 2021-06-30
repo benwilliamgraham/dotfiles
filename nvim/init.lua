@@ -5,18 +5,17 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldlevel = 99
 vim.opt.updatetime = 100
 vim.opt.completeopt = 'menuone'
-
+vim.cmd 'autocmd FileType TelescopePrompt call deoplete#custom#buffer_option(\'auto_complete\', v:false)'
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.autoindent = true
-
 vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.linebreak = true
 vim.opt.colorcolumn = '80'
-
+vim.opt.hidden = true
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', {noremap = false})
 vim.api.nvim_set_keymap('t', 'jk', '<C-\\><C-n>', {noremap = false})
 vim.cmd 'autocmd VimResized * wincmd ='
@@ -29,7 +28,7 @@ paq {'savq/paq-nvim', opt = true}
 -- Treesitter
 paq {'nvim-treesitter/nvim-treesitter'}
 require 'nvim-treesitter.configs'.setup {
-    ensure_installed = 'maintained',
+    ensure_installed = 'all',
     highlight = {enable = true},
 }
 
@@ -59,6 +58,12 @@ paq {'neovim/nvim-lspconfig'}
 paq {'ojroques/nvim-lspfuzzy'}
 local lsp = require 'lspconfig'
 local lspfuzzy = require 'lspfuzzy'
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false,
+    }
+)
 
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -154,6 +159,50 @@ vim.api.nvim_set_keymap('n', '<space>ff', ':Telescope find_files<CR>', {noremap 
 vim.api.nvim_set_keymap('n', '<space>fb', ':Telescope buffers<CR>', {noremap = false})
 vim.api.nvim_set_keymap('n', '<space>fg', ':Telescope live_grep<CR>', {noremap = false})
 
+-- Tree
+paq {'kyazdani42/nvim-web-devicons'}
+paq {'kyazdani42/nvim-tree.lua'}
+
+vim.api.nvim_set_keymap('n', '<space>tt', ':NvimTreeToggle<CR>', {noremap = false})
+
+vim.g.nvim_tree_ignore = { '.git', '.mypy_cache', '__pycache__', "node_modules" }
+
+vim.g.nvim_tree_icons = {
+  default = '',
+  symlink = '',
+  git = {
+    unstaged = "✗",
+    staged = "✓",
+    unmerged = "",
+    renamed = "➜",
+    untracked = "★",
+    deleted = "",
+    ignored = "◌"
+  },
+  folder = {
+  arrow_open = "",
+  arrow_closed = "",
+  default = "",
+  open = "",
+  empty = "",
+  empty_open = "",
+  symlink = "",
+  symlink_open = "",
+  },
+  lsp = {
+    hint = "",
+    info = "",
+    warning = "",
+    error = "",
+  }
+}
+
+-- Status line
+paq {'hoob3rt/lualine.nvim'}
+require('lualine').setup {
+  options = { theme = 'seoul256' },
+}
+
 -- Git
 paq {'tpope/vim-fugitive'}
 paq {'airblade/vim-gitgutter'}
@@ -166,8 +215,8 @@ paq {'romgrk/doom-one.vim'}
 paq {'lifepillar/vim-solarized8'}
 paq {'morhetz/gruvbox'}
 paq {'ayu-theme/ayu-vim'}
-paq {'arcticicestudio/nord-vim'}
 paq {'rafi/awesome-vim-colorschemes'}
+paq {'christianchiarulli/nvcode-color-schemes.vim'}
 
 vim.opt.background = 'dark'
 vim.opt.termguicolors = true
