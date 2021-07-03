@@ -1,3 +1,44 @@
+-- Plugins
+require 'paq' {
+    -- Plugin manager
+    'savq/paq-nvim';
+
+    -- Treesitter
+    'nvim-treesitter/nvim-treesitter';
+
+    -- Completion
+    'shougo/deoplete-lsp';
+    {'shougo/deoplete.nvim', run = vim.fn['remote#host#UpdateRemotePlugins']};
+
+    -- LSP
+    'neovim/nvim-lspconfig';
+    'ojroques/nvim-lspfuzzy';
+
+    -- Fuzzy finder
+    'nvim-lua/popup.nvim';
+    'nvim-lua/plenary.nvim';
+    'nvim-telescope/telescope.nvim';
+
+    -- Tree
+    'kyazdani42/nvim-web-devicons';
+    'kyazdani42/nvim-tree.lua';
+
+    -- Status line
+    'hoob3rt/lualine.nvim';
+
+    -- Git
+    'tpope/vim-fugitive';
+    'airblade/vim-gitgutter';
+
+    -- Themes
+    'romgrk/doom-one.vim';
+    'lifepillar/vim-solarized8';
+    'morhetz/gruvbox';
+    'ayu-theme/ayu-vim';
+    'junegunn/seoul256.vim';
+    'tomasiser/vim-code-dark';
+}
+
 -- Editor
 vim.opt.mouse = 'a'
 vim.opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
@@ -20,13 +61,7 @@ vim.api.nvim_set_keymap('i', 'jk', '<Esc>', {noremap = false})
 vim.api.nvim_set_keymap('t', 'jk', '<C-\\><C-n>', {noremap = false})
 vim.cmd 'autocmd VimResized * wincmd ='
 
--- Plugin manager
-vim.cmd 'packadd paq-nvim'
-local paq = require('paq-nvim').paq
-paq {'savq/paq-nvim', opt = true}
-
 -- Treesitter
-paq {'nvim-treesitter/nvim-treesitter'}
 require 'nvim-treesitter.configs'.setup {
     ensure_installed = 'all',
     highlight = {enable = true},
@@ -36,9 +71,6 @@ vim.opt.foldmethod='expr'
 vim.opt.foldexpr='nvim_treesitter#foldexpr()'
 
 -- Completion
-paq {'shougo/deoplete-lsp'}
-paq {'shougo/deoplete.nvim', run = vim.fn['remote#host#UpdateRemotePlugins']}
-
 vim.g["deoplete#enable_at_startup"] = true
 vim.api.nvim_set_keymap(
     'i',
@@ -54,8 +86,6 @@ vim.api.nvim_set_keymap(
 )
 
 -- LSP
-paq {'neovim/nvim-lspconfig'}
-paq {'ojroques/nvim-lspfuzzy'}
 local lsp = require 'lspconfig'
 local lspfuzzy = require 'lspfuzzy'
 
@@ -101,10 +131,6 @@ lsp.clangd.setup { on_attach = on_attach }
 lspfuzzy.setup {}
 
 -- Fuzzy finder
-paq {'nvim-lua/popup.nvim'}
-paq {'nvim-lua/plenary.nvim'}
-paq {'nvim-telescope/telescope.nvim'}
-
 require('telescope').setup{
   defaults = {
     vimgrep_arguments = {
@@ -116,7 +142,6 @@ require('telescope').setup{
       '--column',
       '--smart-case'
     },
-    prompt_position = "bottom",
     prompt_prefix = "> ",
     selection_caret = "> ",
     entry_prefix = "  ",
@@ -124,7 +149,7 @@ require('telescope').setup{
     selection_strategy = "reset",
     sorting_strategy = "descending",
     layout_strategy = "horizontal",
-    layout_defaults = {
+    layout_config = {
       horizontal = {
         mirror = false,
       },
@@ -132,15 +157,11 @@ require('telescope').setup{
         mirror = false,
       },
     },
-    file_sorter =  require'telescope.sorters'.get_fzy_sorter,
-    file_ignore_patterns = {'__pycache__/*'},
+    file_sorter =  require'telescope.sorters'.get_fuzzy_file,
+    file_ignore_patterns = {'__pycache__'},
     generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
     shorten_path = true,
     winblend = 0,
-    width = 0.75,
-    preview_cutoff = 120,
-    results_height = 1,
-    results_width = 0.8,
     border = {},
     borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
     color_devicons = true,
@@ -160,9 +181,6 @@ vim.api.nvim_set_keymap('n', '<space>fb', ':Telescope buffers<CR>', {noremap = f
 vim.api.nvim_set_keymap('n', '<space>fg', ':Telescope live_grep<CR>', {noremap = false})
 
 -- Tree
-paq {'kyazdani42/nvim-web-devicons'}
-paq {'kyazdani42/nvim-tree.lua'}
-
 vim.api.nvim_set_keymap('n', '<space>tt', ':NvimTreeToggle<CR>', {noremap = false})
 
 vim.g.nvim_tree_ignore = { '.git', '.mypy_cache', '__pycache__', "node_modules" }
@@ -198,28 +216,17 @@ vim.g.nvim_tree_icons = {
 }
 
 -- Status line
-paq {'hoob3rt/lualine.nvim'}
 require('lualine').setup {
-  options = { theme = 'seoul256' },
+  options = { theme = 'codedark' },
 }
 
 -- Git
-paq {'tpope/vim-fugitive'}
-paq {'airblade/vim-gitgutter'}
-
 vim.api.nvim_set_keymap('n', '<space>gn', '<Plug>(GitGutterNextHunk)', {noremap = false})
 vim.api.nvim_set_keymap('n', '<space>gp', '<Plug>(GitGutterPrevHunk)', {noremap = false})
 
 -- Themes
-paq {'romgrk/doom-one.vim'}
-paq {'lifepillar/vim-solarized8'}
-paq {'morhetz/gruvbox'}
-paq {'ayu-theme/ayu-vim'}
-paq {'rafi/awesome-vim-colorschemes'}
-paq {'christianchiarulli/nvcode-color-schemes.vim'}
-
 vim.opt.background = 'dark'
 vim.opt.termguicolors = true
 vim.g.doom_one_terminal_colors = 1
 vim.g.ayucolor = 'mirage'
-vim.cmd 'colorscheme seoul256'
+vim.cmd 'colorscheme codedark'
