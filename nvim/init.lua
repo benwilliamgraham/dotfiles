@@ -13,6 +13,7 @@ require 'paq' {
     -- LSP
     'neovim/nvim-lspconfig';
     'ojroques/nvim-lspfuzzy';
+    'folke/lsp-colors.nvim';
 
     -- Fuzzy finder
     'nvim-lua/popup.nvim';
@@ -37,6 +38,7 @@ require 'paq' {
     'ayu-theme/ayu-vim';
     'junegunn/seoul256.vim';
     'tomasiser/vim-code-dark';
+    'lourenci/github-colors';
 }
 
 -- Editor
@@ -157,9 +159,9 @@ require('telescope').setup{
         mirror = false,
       },
     },
-    file_sorter =  require'telescope.sorters'.get_fuzzy_file,
+    file_sorter = require'telescope.sorters'.get_fuzzy_file,
     file_ignore_patterns = {'__pycache__'},
-    generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
+    generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
     shorten_path = true,
     winblend = 0,
     border = {},
@@ -217,7 +219,7 @@ vim.g.nvim_tree_icons = {
 
 -- Status line
 require('lualine').setup {
-  options = { theme = 'codedark' },
+  options = { theme = 'seoul256' },
 }
 
 -- Git
@@ -229,4 +231,4 @@ vim.opt.background = 'dark'
 vim.opt.termguicolors = true
 vim.g.doom_one_terminal_colors = 1
 vim.g.ayucolor = 'mirage'
-vim.cmd 'colorscheme codedark'
+vim.cmd 'colorscheme seoul256'
