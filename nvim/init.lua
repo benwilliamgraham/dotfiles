@@ -7,38 +7,42 @@ require 'paq' {
     'nvim-treesitter/nvim-treesitter';
 
     -- Completion
-    'shougo/deoplete-lsp';
-    {'shougo/deoplete.nvim', run = vim.fn['remote#host#UpdateRemotePlugins']};
+    'hrsh7th/nvim-cmp';
+    'hrsh7th/cmp-nvim-lsp';
+    'hrsh7th/cmp-buffer';
 
     -- LSP
     'neovim/nvim-lspconfig';
-    'ojroques/nvim-lspfuzzy';
-    'folke/lsp-colors.nvim';
 
     -- Fuzzy finder
-    'nvim-lua/popup.nvim';
     'nvim-lua/plenary.nvim';
+    'nvim-lua/popup.nvim';
     'nvim-telescope/telescope.nvim';
 
     -- Tree
     'kyazdani42/nvim-web-devicons';
     'kyazdani42/nvim-tree.lua';
 
-    -- Status line
-    'hoob3rt/lualine.nvim';
-
     -- Git
     'tpope/vim-fugitive';
     'airblade/vim-gitgutter';
 
     -- Themes
+    'rktjmp/lush.nvim';
     'romgrk/doom-one.vim';
-    'lifepillar/vim-solarized8';
     'morhetz/gruvbox';
     'ayu-theme/ayu-vim';
     'junegunn/seoul256.vim';
     'tomasiser/vim-code-dark';
     'lourenci/github-colors';
+    'glepnir/zephyr-nvim';
+    'theniceboy/nvim-deus';
+    'savq/melange';
+    'shaunsingh/nord.nvim';
+    'ishan9299/nvim-solarized-lua';
+    'metalelf0/jellybeans-nvim';
+    'marko-cerovac/material.nvim';
+    'ishan9299/modus-theme-vim';
 }
 
 -- Editor
@@ -47,8 +51,7 @@ vim.opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
 vim.opt.foldlevelstart = 99
 vim.opt.foldlevel = 99
 vim.opt.updatetime = 100
-vim.opt.completeopt = 'menuone'
-vim.cmd 'autocmd FileType TelescopePrompt call deoplete#custom#buffer_option(\'auto_complete\', v:false)'
+vim.opt.completeopt = 'menu,menuone,noselect'
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
@@ -59,8 +62,7 @@ vim.opt.number = true
 vim.opt.linebreak = true
 vim.opt.colorcolumn = '80'
 vim.opt.hidden = true
-vim.api.nvim_set_keymap('i', 'jk', '<Esc>', {noremap = false})
-vim.api.nvim_set_keymap('t', 'jk', '<C-\\><C-n>', {noremap = false})
+vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap=false })
 vim.cmd 'autocmd VimResized * wincmd ='
 
 -- Treesitter
@@ -73,23 +75,30 @@ vim.opt.foldmethod='expr'
 vim.opt.foldexpr='nvim_treesitter#foldexpr()'
 
 -- Completion
-vim.g["deoplete#enable_at_startup"] = true
-vim.api.nvim_set_keymap(
-    'i',
-    '<S-Tab>',
-    'pumvisible() ? "\\<C-p>" : "\\<Tab>"',
-    {noremap = false, expr = true}
-)
-vim.api.nvim_set_keymap(
-    'i',
-    '<Tab>',
-    'pumvisible() ? "\\<C-n>" : "\\<Tab>"',
-    {noremap = false, expr = true}
-)
+local cmp = require 'cmp'
+cmp.setup {
+  mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<Esc>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'buffer' },
+  },
+}
 
 -- LSP
 local lsp = require 'lspconfig'
-local lspfuzzy = require 'lspfuzzy'
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -106,31 +115,36 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_command 'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()'
 
     local opts = { noremap=true, silent=true }
-    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'gr', '<Cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<space>gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', '<space>gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', '<space>gr', '<Cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', '<space>h', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', '<space>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap('n', '<space>n', '<Cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>p', '<Cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 end
 
-lsp.pyls.setup {
+lsp.pylsp.setup {
     on_attach = on_attach,
     settings = {
-        pyls = {
+        pylsp = {
             plugins = {
                 pylint = {enabled = true},
                 pydocstyle = {enabled = true},
-                yapf = {enabled = true},
-		pyls_mypy = {enabled = true, live_mode = false},
+		        pylsp_mypy = {enabled = true, live_mode = false},
             }
         }
+    },
+    flags = {
+        debounce_text_changes = 150,
     }
 }
-lsp.clangd.setup { on_attach = on_attach }
-
-lspfuzzy.setup {}
+lsp.clangd.setup {
+    on_attach = on_attach,
+    flags = {
+        debounce_text_changes = 150,
+    }
+}
 
 -- Fuzzy finder
 require('telescope').setup{
@@ -162,12 +176,12 @@ require('telescope').setup{
     file_sorter = require'telescope.sorters'.get_fuzzy_file,
     file_ignore_patterns = {'__pycache__'},
     generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
-    shorten_path = true,
     winblend = 0,
     border = {},
     borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
     color_devicons = true,
     use_less = true,
+    path_display = {},
     set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
     file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
     grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
@@ -217,11 +231,6 @@ vim.g.nvim_tree_icons = {
   }
 }
 
--- Status line
-require('lualine').setup {
-  options = { theme = 'seoul256' },
-}
-
 -- Git
 vim.api.nvim_set_keymap('n', '<space>gn', '<Plug>(GitGutterNextHunk)', {noremap = false})
 vim.api.nvim_set_keymap('n', '<space>gp', '<Plug>(GitGutterPrevHunk)', {noremap = false})
@@ -231,4 +240,5 @@ vim.opt.background = 'dark'
 vim.opt.termguicolors = true
 vim.g.doom_one_terminal_colors = 1
 vim.g.ayucolor = 'mirage'
-vim.cmd 'colorscheme seoul256'
+vim.g.material_style = "darker"
+vim.cmd 'colorscheme zenburn'
