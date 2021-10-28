@@ -14,6 +14,9 @@ require 'paq' {
     -- LSP
     'neovim/nvim-lspconfig';
 
+    -- Copilot
+    'github/copilot.vim';
+
     -- Fuzzy finder
     'nvim-lua/plenary.nvim';
     'nvim-lua/popup.nvim';
@@ -43,6 +46,9 @@ require 'paq' {
     'metalelf0/jellybeans-nvim';
     'marko-cerovac/material.nvim';
     'ishan9299/modus-theme-vim';
+    'sainnhe/sonokai';
+    'adisen99/codeschool.nvim';
+    'elianiva/icy.nvim';
 }
 
 -- Editor
@@ -64,6 +70,7 @@ vim.opt.colorcolumn = '80'
 vim.opt.hidden = true
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap=false })
 vim.cmd 'autocmd VimResized * wincmd ='
+vim.cmd 'au BufRead,BufNew *.ll set filetype=llvm'
 
 -- Treesitter
 require 'nvim-treesitter.configs'.setup {
@@ -85,7 +92,7 @@ cmp.setup {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
-    ['<Esc>'] = cmp.mapping.close(),
+    ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
@@ -241,4 +248,5 @@ vim.opt.termguicolors = true
 vim.g.doom_one_terminal_colors = 1
 vim.g.ayucolor = 'mirage'
 vim.g.material_style = "darker"
+vim.g.codeschool_contrast_dark = "soft"
 vim.cmd 'colorscheme zenburn'
