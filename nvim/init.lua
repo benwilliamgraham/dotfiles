@@ -71,6 +71,8 @@ vim.opt.hidden = true
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap=false })
 vim.cmd 'autocmd VimResized * wincmd ='
 vim.cmd 'au BufRead,BufNew *.ll set filetype=llvm'
+vim.cmd 'au BufRead,BufNew *.vert set filetype=glsl'
+vim.cmd 'au BufRead,BufNew *.frag set filetype=glsl'
 
 -- Treesitter
 require 'nvim-treesitter.configs'.setup {
@@ -86,9 +88,7 @@ local cmp = require 'cmp'
 cmp.setup {
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
